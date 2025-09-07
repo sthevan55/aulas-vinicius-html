@@ -1,0 +1,206 @@
+body {
+  background: #191919; /* Cor de fundo da página */
+  color: #f1f1f1; /* Cor do texto padrão */
+  font-family: 'Segoe UI', Arial, sans-serif; /* Fonte da página */
+  margin: 0; /* Remove margens padrão do navegador */
+  padding: 0; /* Remove padding padrão do navegador */
+}
+
+.container {
+  position: relative; /* Permite posicionamento absoluto de elementos filhos */
+  max-width: 900px; /* Largura máxima do container */
+  margin: 32px auto; /* Centraliza horizontalmente e dá margem vertical */
+  background: #23272e; /* Cor de fundo do container */
+  border-radius: 18px; /* Bordas arredondadas */
+  box-shadow: 0 4px 32px #0007; /* Sombra do container */
+  padding: 32px 32px 38px 32px; /* Espaçamento interno */
+  min-height: 1000px; /* Altura mínima do container */
+  overflow: hidden; /* Oculta conteúdo que ultrapassa o container */
+  transition: max-width 0.3s, min-height 0.3s, background-image 0.7s; /* Animação suave ao mudar tamanho ou imagem */
+  background-size: cover; /* Faz a imagem de fundo cobrir todo o container */
+  background-position: center; /* Centraliza a imagem de fundo */
+}
+
+.container::before {
+  content: ""; /* Pseudo-elemento vazio */
+  position: absolute; /* Posicionamento absoluto em relação ao container */
+  inset: 0; /* Preenche todo o container */
+  background: inherit; /* Herdar a mesma cor ou imagem do container */
+  filter: blur(2px) brightness(0.45); /* Efeito de desfoque e escurecimento */
+  z-index: 0; /* Fica atrás do conteúdo principal */
+  transition: background-image 0.7s; /* Transição suave para mudança de imagem */
+}
+
+.container > * {
+  position: relative; /* Posiciona elementos filhos acima do pseudo-elemento */
+  z-index: 1; /* Garante que o conteúdo fique acima do ::before */
+}
+
+.search-city {
+  display: flex; /* Organiza input e botão em linha */
+  gap: 10px; /* Espaçamento entre input e botão */
+  margin-bottom: 20px; /* Espaço abaixo do formulário */
+}
+
+#city-input {
+  flex: 1; /* O input ocupa o máximo de espaço disponível */
+  padding: 14px; /* Espaçamento interno */
+  border-radius: 8px; /* Bordas arredondadas */
+  border: none; /* Remove borda padrão */
+  font-size: 1.1em; /* Tamanho da fonte */
+  outline: none; /* Remove contorno ao focar */
+}
+
+#search-btn {
+  padding: 10px 26px; /* Espaçamento interno do botão */
+  border-radius: 8px; /* Bordas arredondadas */
+  border: none; /* Remove borda */
+  background: #ffe066; /* Cor de fundo do botão */
+  color: #212121; /* Cor do texto */
+  font-weight: bold; /* Texto em negrito */
+  cursor: pointer; /* Cursor de mão ao passar por cima */
+  font-size: 1.1em; /* Tamanho da fonte */
+  transition: background 0.2s; /* Transição suave ao mudar cor */
+}
+
+#search-btn:hover {
+  background: #ffd23f; /* Cor de fundo ao passar o mouse */
+}
+
+/* Bloco clima atual */
+.current {
+  display: flex; /* Organiza conteúdo em linha */
+  align-items: center; /* Alinha verticalmente ao centro */
+  justify-content: space-between; /* Espaça os elementos nas extremidades */
+  background: #22252b; /* Cor de fundo do bloco */
+  border-radius: 13px; /* Bordas arredondadas */
+  padding: 28px 24px; /* Espaçamento interno */
+  margin-bottom: 18px; /* Espaço abaixo do bloco */
+  gap: 36px; /* Espaçamento entre elementos internos */
+  min-height: 120px; /* Altura mínima do bloco */
+}
+
+.current-left {
+  display: flex; /* Organiza conteúdo em linha */
+  align-items: center; /* Alinha verticalmente ao centro */
+  gap: 22px; /* Espaçamento entre ícone e info */
+}
+
+.current-info {
+  font-size: 2.5em; /* Tamanho grande para a temperatura */
+  font-weight: bold; /* Negrito */
+}
+
+#current-description {
+  font-size: 1.1em; /* Tamanho da fonte da descrição do clima */
+  color: #ffe066; /* Cor amarela */
+  margin-top: 8px; /* Espaço acima */
+}
+
+.current-right {
+  text-align: right; /* Alinha o texto à direita */
+}
+
+#current-location {
+  font-size: 1.18em; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito */
+}
+
+#current-day-time {
+  font-size: 1.05em; /* Tamanho da fonte */
+  color: #bdbdbd; /* Cor cinza */
+  margin-bottom: 8px; /* Espaço abaixo */
+}
+
+.current-details {
+  margin-top: 10px; /* Espaço acima */
+  font-size: 1.08em; /* Tamanho da fonte */
+  display: flex; /* Organiza em linha */
+  gap: 24px; /* Espaçamento entre detalhes */
+  justify-content: flex-end; /* Alinha detalhes à direita */
+}
+
+/* Tabs */
+.tabs {
+  display: flex; /* Organiza os botões em linha */
+  gap: 7px; /* Espaçamento entre botões */
+  margin-bottom: 14px; /* Espaço abaixo */
+  justify-content: center; /* Centraliza os botões */
+}
+
+.tab-button {
+  flex: 1; /* Cada botão ocupa espaço igual */
+  background: #252a2e; /* Cor de fundo */
+  color: #ffe066; /* Cor do texto */
+  border: none; /* Sem borda */
+  padding: 11px 0; /* Espaçamento vertical */
+  border-radius: 8px 8px 0 0; /* Bordas arredondadas somente no topo */
+  font-weight: bold; /* Negrito */
+  font-size: 1.08em; /* Tamanho da fonte */
+  cursor: pointer; /* Cursor de mão */
+  transition: background 0.15s; /* Transição suave ao mudar cor */
+}
+
+.tab-button.active {
+  background: #ffe066; /* Fundo do botão ativo */
+  color: #23272e; /* Cor do texto do botão ativo */
+}
+
+/* Chart */
+.chart-area {
+  background: #212126; /* Fundo do gráfico */
+  border-radius: 0 0 12px 12px; /* Bordas arredondadas somente na parte inferior */
+  padding: 22px 24px 6px 24px; /* Espaçamento interno */
+  margin-bottom: 18px; /* Espaço abaixo */
+  min-height: 160px; /* Altura mínima do gráfico */
+}
+
+/* Cards diários */
+.daily-forecast {
+  display: flex; /* Organiza cards em linha */
+  gap: 18px; /* Espaçamento entre cards */
+  overflow-x: auto; /* Scroll horizontal se exceder largura */
+  margin-top: 22px; /* Espaço acima */
+  padding-bottom: 8px; /* Espaço abaixo */
+}
+
+.day-card {
+  background: #24292f; /* Cor de fundo do card */
+  border-radius: 12px; /* Bordas arredondadas */
+  padding: 18px 12px 14px 12px; /* Espaçamento interno */
+  min-width: 110px; /* Largura mínima */
+  text-align: center; /* Centraliza o conteúdo */
+  color: #ffe066; /* Cor do texto */
+  font-weight: bold; /* Negrito */
+  box-shadow: 0 2px 8px #0002; /* Sombra do card */
+  flex-shrink: 0; /* Não encolhe quando houver scroll */
+  cursor: pointer; /* Cursor de mão */
+  font-size: 1.14em; /* Tamanho da fonte */
+  transition: transform 0.12s, background 0.18s; /* Animação ao passar o mouse */
+}
+
+.day-card:hover {
+  transform: scale(1.07); /* Aumenta o card ao passar o mouse */
+  background: #353a40; /* Muda a cor do card ao passar o mouse */
+}
+
+.day-card .day-name {
+  font-size: 1.06em; /* Tamanho da fonte do dia */
+  color: #fff8; /* Cor branca transparente */
+  margin-bottom: 4px; /* Espaço abaixo */
+}
+
+.day-card img {
+  width: 45px; /* Largura do ícone */
+  height: 45px; /* Altura do ícone */
+}
+
+.day-card .temp-range {
+  margin-top: 7px; /* Espaço acima */
+  font-size: 1.18em; /* Tamanho da fonte */
+}
+
+.day-card .min {
+  color: #bdbdbd; /* Cor cinza para temperatura mínima */
+  font-size: 0.98em; /* Tamanho menor */
+}

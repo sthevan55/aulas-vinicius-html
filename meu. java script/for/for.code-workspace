@@ -1,0 +1,23 @@
+{
+  "folders": [
+	{
+		"name": "for",
+		"path": "."
+	},
+	{
+		"name": "if-else",
+		"path": "../if-else"
+	},
+	{
+		"name": "switch case",
+		"path": "../switch case"
+	},
+	{
+		"name": "while",
+		"path": "../while"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "for"
+  }
+}

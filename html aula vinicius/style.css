@@ -1,0 +1,32 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(20, 122, 159);
+    margin: 0%;
+    padding: 0;
+    color: #333;
+}
+header{
+    background-color: red;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+main{
+    padding: 20px;
+    text-align: center;
+}
+button{
+    padding: 10px 20px;
+    background-color: rgba(11, 175, 167, 0.618);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+}
+button:hover{
+    background-color: aqua;
+}
+footer{
+    background-color: violet;
+    color: rgb(5, 183, 171);
+    text-align: center;
+}

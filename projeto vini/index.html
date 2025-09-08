@@ -1,89 +1,102 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <!-- Define que este documento é HTML5 -->
 
 <html lang="pt-BR">
-<!-- Elemento raiz da página; "lang" define idioma como português do Brasil -->
+  <!-- Elemento raiz da página; "lang" define idioma como português do Brasil -->
 
-<head>
-  <meta charset="UTF-8">
-  <!-- Define a codificação de caracteres como UTF-8 -->
-  
-  <title>Previsão do Tempo</title>
-  <!-- Título da página que aparece na aba do navegador -->
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Define a codificação de caracteres como UTF-8 -->
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Configura a página para ser responsiva em dispositivos móveis -->
+    <title>Previsão do Tempo</title>
+    <!-- Título da página que aparece na aba do navegador -->
 
-  <!-- Chart.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Inclui a biblioteca Chart.js para desenhar gráficos -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Configura a página para ser responsiva em dispositivos móveis -->
 
-  <link rel="stylesheet" href="style.css">
-  <!-- Inclui o arquivo CSS externo para estilização da página -->
-</head>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Inclui a biblioteca Chart.js para desenhar gráficos -->
 
-<body>
-  <div class="container">
-    <!-- Container principal que envolve todo o conteúdo da página -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Inclui o arquivo CSS externo para estilização da página -->
+  </head>
 
-    <form class="search-city">
-      <!-- Formulário de busca de cidade -->
-      <input type="text" id="city-input" placeholder="Digite o nome da cidade" autocomplete="off">
-      <!-- Input para digitar o nome da cidade. autocomplete="off" desativa sugestões do navegador -->
+  <body>
+    <div class="container">
+      <!-- Container principal que envolve todo o conteúdo da página -->
 
-      <button type="submit" id="search-btn">Buscar</button>
-      <!-- Botão para enviar a busca -->
-    </form>
+      <form class="search-city">
+        <!-- Formulário de busca de cidade -->
+        <input
+          type="text"
+          id="city-input"
+          placeholder="Digite o nome da cidade"
+          autocomplete="off"
+        />
+        <!-- Input para digitar o nome da cidade. autocomplete="off" desativa sugestões do navegador -->
 
-    <div class="current">
-      <!-- Bloco que mostra o clima atual -->
+        <button type="submit" id="search-btn">Buscar</button>
+        <!-- Botão para enviar a busca -->
+      </form>
 
-      <div class="current-left">
-        <!-- Lado esquerdo: ícone e temperatura principal -->
-        <img id="main-weather-icon" src="https://openweathermap.org/img/wn/01d.png" alt="Ícone do tempo" width="64" height="64">
-        <!-- Ícone do clima atual -->
-        <div>
-          <div class="current-info"><span id="current-temp">--</span>°C</div>
-          <!-- Temperatura atual -->
-          <div id="current-description">--</div>
-          <!-- Descrição do clima (ex: nublado, ensolarado) -->
+      <div class="current">
+        <!-- Bloco que mostra o clima atual -->
+
+        <div class="current-left">
+          <!-- Lado esquerdo: ícone e temperatura principal -->
+          <img
+            id="main-weather-icon"
+            src="https://openweathermap.org/img/wn/01d.png"
+            alt="Ícone do tempo"
+            width="64"
+            height="64"
+          />
+          <!-- Ícone do clima atual -->
+          <div>
+            <div class="current-info"><span id="current-temp">--</span>°C</div>
+            <!-- Temperatura atual -->
+            <div id="current-description">--</div>
+            <!-- Descrição do clima (ex: nublado, ensolarado) -->
+          </div>
+        </div>
+
+        <div class="current-right">
+          <!-- Lado direito: informações adicionais -->
+          <div id="current-location">--</div>
+          <!-- Nome da cidade -->
+          <div id="current-day-time">--</div>
+          <!-- Data e hora atuais -->
+
+          <div class="current-details">
+            <!-- Detalhes extras: chuva, umidade, vento -->
+            <span>🌧️ <span id="current-rain">--</span>mm</span>
+            <span>💧 <span id="current-humidity">--</span>%</span>
+            <span>💨 <span id="current-wind">--</span>km/h</span>
+          </div>
         </div>
       </div>
 
-      <div class="current-right">
-        <!-- Lado direito: informações adicionais -->
-        <div id="current-location">--</div>
-        <!-- Nome da cidade -->
-        <div id="current-day-time">--</div>
-        <!-- Data e hora atuais -->
-
-        <div class="current-details">
-          <!-- Detalhes extras: chuva, umidade, vento -->
-          <span>🌧️ <span id="current-rain">--</span>mm</span>
-          <span>💧 <span id="current-humidity">--</span>%</span>
-          <span>💨 <span id="current-wind">--</span>km/h</span>
-        </div>
+      <div class="tabs">
+        <!-- Botões para alternar gráficos: temperatura, chuva, vento -->
+        <button class="tab-button active" data-type="temperatura">
+          Temperatura
+        </button>
+        <button class="tab-button" data-type="chuva">Chuva</button>
+        <button class="tab-button" data-type="vento">Vento</button>
       </div>
+
+      <div class="chart-area">
+        <!-- Área onde o gráfico será renderizado -->
+        <canvas id="hourlyChart" height="110"></canvas>
+        <!-- Canvas do Chart.js onde o gráfico de horas aparecerá -->
+      </div>
+
+      <div class="daily-forecast"></div>
+      <!-- Container onde os cards diários do clima serão adicionados dinamicamente -->
     </div>
 
-    <div class="tabs">
-      <!-- Botões para alternar gráficos: temperatura, chuva, vento -->
-      <button class="tab-button active" data-type="temperatura">Temperatura</button>
-      <button class="tab-button" data-type="chuva">Chuva</button>
-      <button class="tab-button" data-type="vento">Vento</button>
-    </div>
-
-    <div class="chart-area">
-      <!-- Área onde o gráfico será renderizado -->
-      <canvas id="hourlyChart" height="110"></canvas>
-      <!-- Canvas do Chart.js onde o gráfico de horas aparecerá -->
-    </div>
-
-    <div class="daily-forecast"></div>
-    <!-- Container onde os cards diários do clima serão adicionados dinamicamente -->
-  </div>
-
-  <script src="script.js"></script>
-  <!-- Inclui o arquivo JavaScript externo que contém toda a lógica do clima -->
-</body>
+    <script src="script.js"></script>
+    <!-- Inclui o arquivo JavaScript externo que contém toda a lógica do clima -->
+  </body>
 </html>

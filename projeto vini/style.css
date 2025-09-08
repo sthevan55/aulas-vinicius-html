@@ -204,3 +204,88 @@ body {
   color: #bdbdbd; /* Cor cinza para temperatura mínima */
   font-size: 0.98em; /* Tamanho menor */
 }
+/* Modal - Fundo escuro */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.65); /* Fundo escurecido */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999; /* Sempre acima do resto */
+}
+
+/* Caixa central */
+.modal {
+  background: #23272e;
+  padding: 24px;
+  border-radius: 16px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80%;
+  overflow-y: auto;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.6);
+  color: #f1f1f1;
+  animation: showModal 0.25s ease-out;
+}
+
+/* Animação de entrada */
+@keyframes showModal {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Botão de fechar */
+.close-modal {
+  background: none;
+  border: none;
+  font-size: 1.6em;
+  color: #ffe066;
+  float: right;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.close-modal:hover {
+  color: #ffd23f;
+}
+
+/* Título */
+.modal h2 {
+  margin: 10px 0 18px;
+  font-size: 1.3em;
+  color: #ffe066;
+  border-bottom: 1px solid #444;
+  padding-bottom: 6px;
+}
+
+/* Lista de períodos (cada horário) */
+.modal-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-period {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #2a2f35;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.98em;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+.modal-period img {
+  width: 32px;
+  height: 32px;
+}
